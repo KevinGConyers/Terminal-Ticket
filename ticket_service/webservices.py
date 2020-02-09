@@ -26,10 +26,10 @@ jira = JIRA(options, auth=("kevin", "v3ryC0mpl3x!"))  # a username/password tupl
 #_three = Counter([issue.fields.project.key for issue in issues]).most_common(3)
 
 
-def listIssues(jira):
-    issues = jira.search_issues('project=10000')
+def listIssues(jira, project_name):
+    issues = jira.search_issues('project={}'.format(project_name))
     for issue in issues:
-        print("Issue Key: {0:<10}\n\t{1:<10}".format(issue.key, issue.fields.summary))
+        print("Issue Key: {0:<10}Status: {1}\n\t{2:<10}".format(issue.key, issue.fields.status, issue.fields.summary))
 
 def openIssue(jira, issue_key):
     issue=jira.issue(issue_key)

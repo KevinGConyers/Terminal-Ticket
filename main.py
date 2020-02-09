@@ -3,8 +3,10 @@
 import argparse
 import sys
 import os
+import os.path
 import ticket_service.webservices as tc
 import ticket_service.ticketinterface as ti
+import json
 from collections import Counter
 from jira import JIRA
 
@@ -12,23 +14,44 @@ from jira import JIRA
 def handleArgs():
     parser = argparse.ArgumentParser(description='Command line Jira frontend')
     #parser.add_argument('-f', '--filename',  dest='filename', action='store', default='default.shock', help='provide a filename, if not provided, a default is used, located in ~/.ShockStohr/default.shock')
-    parser.add_argument('mode', nargs=1, action='store', help='list all issues in project')
+    parser.add_argument('mode', nargs=1, action='store', help='Supply an action mode')
     parser.add_argument('search_string', nargs='*', action='store')
     parser.add_argument('-m', '--message', nargs="*", action='store')
     args = parser.parse_args(sys.argv[1:])
     return args
+def loadConfiguration():
+    configuration_dict_list = []
+    home = os.path.expanduser("~")
+    config_path = "{}/.ttktconfig.json".format(home)
+    if os.path.isfile(config_path):
+        config_file = open(config_path)
+        configuration_dict_list = json.load(config_file)
+    else:
+        print("User configuration file not set, contact sysadmin")
+        exit()
+    return configuration_dict_list
+
+
 
 def main():
     args = handleArgs()
-    options = {"server": "http://45.32.220.47:8080"}
-    project_name = "TT"
-    jira = JIRA(options, auth=("kevin", "v3ryC0mpl3x!"))  # a username/password tuple
+    configuration = loadConfiguration()
+    project_name =configuration["project-key"]
+    user_name = ''
+    if configuration["auth-type"] == "http":
+        user_name = configuration["http-user"]["name"]
+        jira = JIRA(configuration["options"], auth=(configuration["http-user"]["name"], configuration["http-user"]["password"]))  # a username/password tuple
+    else :
+        print("Authentication appears to be configured incorrectly")
+        exit()
     project = jira.project(project_name)
-    print("Mode: {}".format(args.mode))
+    if len(args.mode) < 1:
+        print("Please supply a mode!")
+        exit()
     if args.mode[0] == 'list':
-        tc.listIssues(jira)
+        tc.listIssues(jira, project_name)
     if args.mode[0] == 'create':
-        issue = ti.createIssue('kevin')
+        issue = ti.createIssue(user_name)
         issue['project']['id'] = project.id
         tc.createIssue(jira, issue)
     if args.mode[0] == 'edit':
