@@ -50,23 +50,23 @@ def main():
         exit()
     if args.mode[0] == 'list':
         tc.listIssues(jira, project_name)
-    if args.mode[0] == 'create':
+    elif args.mode[0] == 'create':
         issue = ti.createIssue(user_name)
         issue['project']['id'] = project.id
         tc.createIssue(jira, issue)
-    if args.mode[0] == 'view':
+    elif args.mode[0] == 'view':
         if len(args.search_string) < 1:
             print("Please provide an issue key")
             exit()
         issue = tc.openIssue(jira, args.search_string[0])
         ti.viewIssue(issue)
-    if args.mode[0] == 'edit':
+    elif args.mode[0] == 'edit':
         if len(args.search_string) < 1:
             print("Please provide an issue key")
             exit()
         issue = tc.openIssue(jira, args.search_string[0])
         ti.editIssue(issue)
-    if args.mode[0] == 'resolve':
+    elif args.mode[0] == 'resolve':
         if len(args.search_string) < 1:
             print("Please provide an issue key")
             exit()
@@ -74,7 +74,7 @@ def main():
         issue_transition_fields = ti.resolveIssue()
         issue_transition_fields['assignee']['name'] = user_name
         tc.tranisitionIssue(jira, issue, issue_transition_fields, 'Resolve Issue')
-    if args.mode[0] == "qresolve":
+    elif args.mode[0] == "qresolve":
         if len(args.search_string) < 1:
             print("Please provide an issue key")
             exit()
@@ -85,6 +85,8 @@ def main():
         issue_transition_fields = ti.resolveIssue(args.message[0])
         issue_transition_fields['assignee']['name'] = user_name
         tc.tranisitionIssue(jira, issue, issue_transition_fields, 'Resolve Issue')
+    else:
+        print("Unrecognized Command")
 
 
     #args = sys.argv[1:]
