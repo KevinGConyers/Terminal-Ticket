@@ -23,7 +23,7 @@ jira = JIRA(options, auth=("kevin", "v3ryC0mpl3x!"))  # a username/password tupl
 
 # Find the top three projects containing issues reported by admin
 
-#top_three = Counter([issue.fields.project.key for issue in issues]).most_common(3)
+#_three = Counter([issue.fields.project.key for issue in issues]).most_common(3)
 
 
 def listIssues(jira):
@@ -34,4 +34,18 @@ def listIssues(jira):
 def openIssue(jira, issue_key):
     issue=jira.issue(issue_key)
     return issue
+
+def createIssue(jira, issue_dict):
+    issue = jira.create_issue(fields=issue_dict)
+
+def editIssue(jira, issue_dict):
+    issue.update(fields=issue_dict)
+
+def tranisitionIssue(jira, issue, issue_transition_fields, transition_name):
+    jira.transition_issue(issue, transition_name, fields=issue_transition_fields)
+
+def resolveIssue(jira, issue, issue_transition_fields):
+    pass
+
+
 
