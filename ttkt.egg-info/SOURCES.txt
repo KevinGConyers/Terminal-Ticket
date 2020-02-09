@@ -1,0 +1,9 @@
+README.md
+setup.py
+ttkt/__init__.py
+ttkt/__main__.py
+ttkt.egg-info/PKG-INFO
+ttkt.egg-info/SOURCES.txt
+ttkt.egg-info/dependency_links.txt
+ttkt.egg-info/entry_points.txt
+ttkt.egg-info/top_level.txt

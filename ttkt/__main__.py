@@ -1,3 +1,8 @@
+
+# from .classmodule import MyClass
+# from .funcmodule import my_function
+
+
 #!/bin/python
 
 import argparse
@@ -82,10 +87,7 @@ def main():
 
 
     args = sys.argv[1:]
-    print('this can take multiple args'.format(len(args)))
-    for arg in args:
-        print('passed argument :: {}'.format(arg))
-    # my_function('ttkt')
+
 if __name__ == '__main__':
     main()
 
