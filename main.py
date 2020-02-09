@@ -54,6 +54,12 @@ def main():
         issue = ti.createIssue(user_name)
         issue['project']['id'] = project.id
         tc.createIssue(jira, issue)
+    if args.mode[0] == 'view':
+        if len(args.search_string) < 1:
+            print("Please provide an issue key")
+            exit()
+        issue = tc.openIssue(jira, args.search_string[0])
+        ti.viewIssue(issue)
     if args.mode[0] == 'edit':
         if len(args.search_string) < 1:
             print("Please provide an issue key")
@@ -66,7 +72,7 @@ def main():
             exit()
         issue = tc.openIssue(jira, args.search_string[0])
         issue_transition_fields = ti.resolveIssue()
-        issue_transition_fields['assignee']['name'] = 'kevin'
+        issue_transition_fields['assignee']['name'] = user_name
         tc.tranisitionIssue(jira, issue, issue_transition_fields, 'Resolve Issue')
     if args.mode[0] == "qresolve":
         if len(args.search_string) < 1:
@@ -77,14 +83,14 @@ def main():
             exit()
         issue = tc.openIssue(jira, args.search_string[0])
         issue_transition_fields = ti.resolveIssue(args.message[0])
-        issue_transition_fields['assignee']['name'] = 'kevin'
+        issue_transition_fields['assignee']['name'] = user_name
         tc.tranisitionIssue(jira, issue, issue_transition_fields, 'Resolve Issue')
 
 
-    args = sys.argv[1:]
-    print('this can take multiple args'.format(len(args)))
-    for arg in args:
-        print('passed argument :: {}'.format(arg))
+    #args = sys.argv[1:]
+   # print('this can take multiple args'.format(len(args)))
+    #for arg in args:
+     #   print('passed argument :: {}'.format(arg))
     # my_function('ttkt')
 if __name__ == '__main__':
     main()

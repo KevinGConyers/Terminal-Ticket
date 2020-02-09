@@ -14,6 +14,9 @@ def editIssue(issue):
         issue.update(comment= comment)
     return issue
 
+def viewIssue(issue):
+    print("Issue: {:<20}\tStatus: {}\nSummary: {:<20}\nDescrption: {:<20}".format(issue.key, issue.fields.status, issue.fields.summary, issue.fields.description))
+
 
 def createIssue(current_user):
     issue_dict = {'project' : {'id': 123},
