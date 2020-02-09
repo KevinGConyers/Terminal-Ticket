@@ -8,8 +8,7 @@ function App() {
       <header className="App-header">
         <img src={map} className="App-logo" alt="logo"/>
         <p>
-          <a href="http://45.32.220.47:8080/secure/Dashboard.jspa">LOGIN</a>
-          <Link to="/dashboard">
+          <Link to="http://45.32.220.47:8080/secure/Dashboard.jspa">>
               <button type="button">
                     LOGIN
               </button>
