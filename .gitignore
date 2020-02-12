@@ -1,2 +1,4 @@
 .env
-ttkt/__pycache__/
+ttkt/__pycache__/*
+ticket_service/__pycache__/*
+ticket_service/__pycache__/

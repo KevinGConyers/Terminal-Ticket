@@ -15,6 +15,11 @@ def editIssue(issue):
     return issue
 
 def viewIssue(issue):
+    if not isinstance(issue.fields.summary, str):
+        issue.fields.summary = "N/A"
+    if not isinstance(issue.fields.description, str):
+        issue.fields.description = "N/A"
+
     print("Issue: {:<20}\tStatus: {}\nSummary: {:<20}\nDescrption: {:<20}".format(issue.key, issue.fields.status, issue.fields.summary, issue.fields.description))
 
 
