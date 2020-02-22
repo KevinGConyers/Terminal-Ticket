@@ -19,6 +19,7 @@ def handleArgs():
     parser.add_argument('-m', '--message', nargs="*", action='store')
     args = parser.parse_args(sys.argv[1:])
     return args
+
 def loadConfiguration():
     configuration_dict_list = []
     home = os.path.expanduser("~")
@@ -38,6 +39,7 @@ def main():
     configuration = loadConfiguration()
     project_name =configuration["project-key"]
     user_name = ''
+    jira = ''
     if configuration["auth-type"] == "http":
         user_name = configuration["http-user"]["name"]
         jira = JIRA(configuration["options"], auth=(configuration["http-user"]["name"], configuration["http-user"]["password"]))  # a username/password tuple

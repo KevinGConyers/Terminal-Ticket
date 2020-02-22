@@ -1,4 +1,5 @@
 .env
+*.png
 ttkt/__pycache__/*
 ticket_service/__pycache__/*
 ticket_service/__pycache__/

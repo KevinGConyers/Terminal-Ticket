@@ -10,8 +10,6 @@ from jira import JIRA
 # See
 # https://developer.atlassian.com/display/DOCS/Installing+the+Atlassian+Plugin+SDK
 # for details.
-options = {"server": "http://45.32.220.47:8080"}
-jira = JIRA(options, auth=("kevin", "v3ryC0mpl3x!"))  # a username/password tuple
 
 # Get the mutable application properties for this server (requires
 # jira-system-administrators permission)

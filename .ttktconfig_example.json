@@ -1,0 +1,14 @@
+{
+	"project-key": "Example",
+	"options" : 
+	{
+		"server": "http://127.0.0.1:8080"
+	},
+	"auth-type": "http",
+	"http-user": 
+	{
+		"name": "Admin",
+		"password": "password"
+	}
+
+}
