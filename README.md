@@ -25,5 +25,12 @@ with python3 and configured for to point at a jira server.
 		  current user with message
 		
 ## Configuration Notes
-	Currently, the software only works with Jira on http users so those
-fields must be filled on in the config file. 
+	The example config file is copied to the location it is expected to be
+in, however you still need to fill out your organization's information.
+
+
+## Support
+We currently have a kickstarter running
+[here](https://www.kickstarter.com/projects/shocktohp/terminal-ticket)!
+We are attempting to raise money to continue development into a full product.
+We are also happy to accept pull requests, or issue reports.
