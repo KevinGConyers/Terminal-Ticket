@@ -15,7 +15,7 @@ ease the burden of having to constantly context shift between terminal sessions
 and GUIs when performing IT fixes. It can be deployed onto most linux distro's
 with python3 and configured for to point at a jira server. 
 	```ttkt [mode] (operands)```
-	### Modes:
+	* Modes: *
 		- list: lists all tickets
 		- view <ticket-slug>: view details of a ticket
 		- create: creates a new ticket
