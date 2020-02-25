@@ -26,6 +26,7 @@ with python3 and configured for to point at a jira server.
 		
 ## Configuration Notes
 	The example config file is copied to the location it is expected to be
+{~/.ttktconfig.json}
 in, however you still need to fill out your organization's information.
 
 
